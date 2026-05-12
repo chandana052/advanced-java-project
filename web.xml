@@ -1,0 +1,62 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+<display-name>EmployeeWebApp</display-name>
+<!--  ══ Welcome page ══  -->
+<welcome-file-list>
+<welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+<!--  ══ Servlets ══  -->
+<!--  Add Employee  -->
+<servlet>
+<servlet-name>AddEmployeeServlet</servlet-name>
+<servlet-class>com.servlet.AddEmployeeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>AddEmployeeServlet</servlet-name>
+<url-pattern>/AddEmployeeServlet</url-pattern>
+</servlet-mapping>
+<!--  Update Employee  -->
+<servlet>
+<servlet-name>UpdateEmployeeServlet</servlet-name>
+<servlet-class>com.servlet.UpdateEmployeeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>UpdateEmployeeServlet</servlet-name>
+<url-pattern>/UpdateEmployeeServlet</url-pattern>
+</servlet-mapping>
+<!--  Delete Employee  -->
+<servlet>
+<servlet-name>DeleteEmployeeServlet</servlet-name>
+<servlet-class>com.servlet.DeleteEmployeeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>DeleteEmployeeServlet</servlet-name>
+<url-pattern>/DeleteEmployeeServlet</url-pattern>
+</servlet-mapping>
+<!--  Display Employee  -->
+<servlet>
+<servlet-name>DisplayEmployeeServlet</servlet-name>
+<servlet-class>com.servlet.DisplayEmployeeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>DisplayEmployeeServlet</servlet-name>
+<url-pattern>/DisplayEmployeeServlet</url-pattern>
+</servlet-mapping>
+<!--  Report Servlet  -->
+<servlet>
+<servlet-name>ReportServlet</servlet-name>
+<servlet-class>com.servlet.ReportServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ReportServlet</servlet-name>
+<url-pattern>/ReportServlet</url-pattern>
+</servlet-mapping>
+<!--  Report Criteria Servlet  -->
+<servlet>
+<servlet-name>ReportCriteriaServlet</servlet-name>
+<servlet-class>com.servlet.ReportCriteriaServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ReportCriteriaServlet</servlet-name>
+<url-pattern>/ReportCriteriaServlet</url-pattern>
+</servlet-mapping>
+</web-app>
