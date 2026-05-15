@@ -1,28 +1,63 @@
 package com.servlet;
 
-import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.IOException;
 
-/**
- * ReportCriteriaServlet – simply forwards to the report selection form.
- * All actual report logic is in ReportServlet.
- */
+import com.dao.EmployeeDAO;
+import com.model.Employee;
+
 @WebServlet("/ReportCriteriaServlet")
 public class ReportCriteriaServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("report_form.jsp").forward(request, response);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+
+        EmployeeDAO dao = new EmployeeDAO();
+
+        try {
+
+            String reportType = request.getParameter("reportType");
+
+            List<Employee> list = null;
+
+            // 🔹 Report By Name
+            if (reportType.equals("name")) {
+
+                String letter = request.getParameter("letter");
+
+                list = dao.getEmployeesByNameStartsWith(letter);
+            }
+
+            // 🔹 Report By Experience
+            else if (reportType.equals("experience")) {
+
+                int years = Integer.parseInt(request.getParameter("years"));
+
+                list = dao.getEmployeesByYearsOfService(years);
+            }
+
+            // 🔹 Report By Salary
+            else if (reportType.equals("salary")) {
+
+                double salary = Double.parseDouble(request.getParameter("salary"));
+
+                list = dao.getEmployeesBySalaryGreaterThan(salary);
+            }
+
+            request.setAttribute("list", list);
+
+            RequestDispatcher rd =
+                    request.getRequestDispatcher("report_result.jsp");
+
+            rd.forward(request, response);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 }
